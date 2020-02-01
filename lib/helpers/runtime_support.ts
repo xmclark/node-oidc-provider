@@ -4,7 +4,7 @@ const [major, minor] = process.version.substr(1).split('.').map((x) => parseInt(
 const xofOutputLength = major > 12 || (major === 12 && minor >= 8);
 const shake256 = xofOutputLength && crypto.getHashes().includes('shake256');
 
-export const RUNTIME_SUPPORT = {
+export const runtimeSupport = {
   'RSA-OAEP-256': major > 12 || (major === 12 && minor >= 9),
   EdDSA: major >= 12,
   KeyObject: typeof crypto.KeyObject !== 'undefined',

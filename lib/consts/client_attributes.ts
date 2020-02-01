@@ -152,3 +152,17 @@ export const LOOPBACKS = new Set(['localhost', '127.0.0.1', '[::1]']);
 export const ENUM = {
   application_type: () => ['native', 'web'],
 };
+
+export const CLIENT_ATTRIBUTES = {
+  ENUM,
+  LOOPBACKS,
+  HTTPS_URI,
+  WEB_URI,
+  WHEN,
+  STRING,
+  ARYS,
+  BOOL,
+  REQUIRED,
+  DEFAULT,
+  RECOGNIZED_METADATA,
+};
