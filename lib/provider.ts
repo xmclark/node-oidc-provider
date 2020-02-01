@@ -1,29 +1,51 @@
-const url = require('url');
-const { strict: assert } = require('assert');
-const { IncomingMessage, ServerResponse } = require('http');
-const { Http2ServerRequest, Http2ServerResponse } = require('http2');
-const events = require('events');
+import url from 'url';
+import { get } from 'lodash';
+import Koa from 'koa';
+import { strict as assert } from 'assert';
+import { IncomingMessage, ServerResponse } from 'http';
+import { Http2ServerRequest, Http2ServerResponse } from 'http2';
+import attention from './helpers/attention';
+import Configuration from './helpers/configuration';
+import { ROUTER_URL_METHOD } from './helpers/symbols';
+import instance from './helpers/weak_cache';
+import initializeKeystore from './helpers/initialize_keystore';
+import initializeAdapter from './helpers/initialize_adapter';
+import initializeApp from './helpers/initialize_app';
+import initializeClients from './helpers/initialize_clients';
+import RequestUriCache from './helpers/request_uri_cache';
+import validUrl from './helpers/valid_url';
+import epochTime from './helpers/epoch_time';
+import getClaims from './helpers/claims';
+import getContext from './helpers/oidc_context';
+import { SessionNotFound } from './helpers/errors';
+import models from './models';
+import nanoid from './helpers/nanoid';
+import ssHandler from './helpers/samesite_handler';
 
-const get = require('lodash/get');
-const Koa = require('koa');
-
-const attention = require('./helpers/attention');
-const Configuration = require('./helpers/configuration');
-const { ROUTER_URL_METHOD } = require('./helpers/symbols');
-const instance = require('./helpers/weak_cache');
-const initializeKeystore = require('./helpers/initialize_keystore');
-const initializeAdapter = require('./helpers/initialize_adapter');
-const initializeApp = require('./helpers/initialize_app');
-const initializeClients = require('./helpers/initialize_clients');
-const RequestUriCache = require('./helpers/request_uri_cache');
-const validUrl = require('./helpers/valid_url');
-const epochTime = require('./helpers/epoch_time');
-const getClaims = require('./helpers/claims');
-const getContext = require('./helpers/oidc_context');
-const { SessionNotFound } = require('./helpers/errors');
-const models = require('./models');
-const nanoid = require('./helpers/nanoid');
-const ssHandler = require('./helpers/samesite_handler');
+// OLD
+// const { strict: assert } = require('assert');
+// const { IncomingMessage, ServerResponse } = require('http');
+// const { Http2ServerRequest, Http2ServerResponse } = require('http2');
+// const Koa = require('koa');
+// const url = require('url');
+// const get = require('lodash/get');
+// const attention = require('./helpers/attention');
+// const Configuration = require('./helpers/configuration');
+// const { ROUTER_URL_METHOD } = require('./helpers/symbols');
+// const instance = require('./helpers/weak_cache');
+// const initializeKeystore = require('./helpers/initialize_keystore');
+// const initializeAdapter = require('./helpers/initialize_adapter');
+// const initializeApp = require('./helpers/initialize_app');
+// const initializeClients = require('./helpers/initialize_clients');
+// const RequestUriCache = require('./helpers/request_uri_cache');
+// const validUrl = require('./helpers/valid_url');
+// const epochTime = require('./helpers/epoch_time');
+// const getClaims = require('./helpers/claims');
+// const getContext = require('./helpers/oidc_context');
+// const { SessionNotFound } = require('./helpers/errors');
+// const models = require('./models');
+// const nanoid = require('./helpers/nanoid');
+// const ssHandler = require('./helpers/samesite_handler');
 
 function assertReqRes(req, res) {
   assert(
@@ -67,7 +89,7 @@ async function getInteraction(req, res) {
   return interaction;
 }
 
-class Provider extends events.EventEmitter {
+class Provider extends NodeJS.EventEmitter {
   constructor(issuer, setup) {
     assert(issuer, 'first argument must be the Issuer Identifier, i.e. https://op.example.com');
     assert.equal(typeof issuer, 'string', 'Issuer Identifier must be a string');
