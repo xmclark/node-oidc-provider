@@ -9,10 +9,8 @@ import pick from 'lodash/pick';
 import reduce from 'lodash/reduce';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
-
 import { JWA } from '../consts';
-
-import formatters from './formatters';
+import { formatters } from './formatters';
 import docs from './docs';
 import defaults from './defaults';
 import { STABLE, DRAFTS } from './features';
