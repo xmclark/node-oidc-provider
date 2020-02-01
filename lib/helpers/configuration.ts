@@ -1,23 +1,23 @@
-const { deprecate } = require('util');
+import { deprecate } from 'util';
 
-const cloneDeep = require('lodash/cloneDeep');
-const get = require('lodash/get');
-const has = require('lodash/has');
-const isPlainObject = require('lodash/isPlainObject');
-const mergeWith = require('lodash/mergeWith');
-const pick = require('lodash/pick');
-const reduce = require('lodash/reduce');
-const remove = require('lodash/remove');
-const set = require('lodash/set');
+import cloneDeep from 'lodash/cloneDeep';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import isPlainObject from 'lodash/isPlainObject';
+import mergeWith from 'lodash/mergeWith';
+import pick from 'lodash/pick';
+import reduce from 'lodash/reduce';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
 
-const { JWA } = require('../consts');
+import { JWA } from '../consts';
 
-const formatters = require('./formatters');
-const docs = require('./docs');
-const defaults = require('./defaults');
-const { STABLE, DRAFTS } = require('./features');
-const attention = require('./attention');
-const runtimeSupport = require('./runtime_support');
+import formatters from './formatters';
+import docs from './docs';
+import defaults from './defaults';
+import { STABLE, DRAFTS } from './features';
+import * as attention from './attention';
+import runtimeSupport from './runtime_support';
 
 function authEndpointDefaults(config) {
   [
