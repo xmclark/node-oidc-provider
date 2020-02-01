@@ -1,4 +1,4 @@
-const runtimeSupport = require('../helpers/runtime_support');
+import { runtimeSupport } from '../helpers/runtime_support';
 
 const signingAlgValues = [
   'HS256', 'HS384', 'HS512',
@@ -23,7 +23,7 @@ const encryptionEncValues = [
   'A128CBC-HS256', 'A128GCM', 'A192CBC-HS384', 'A192GCM', 'A256CBC-HS512', 'A256GCM',
 ];
 
-module.exports = {
+export const JWA = {
   tokenEndpointAuthSigningAlgValues: [...signingAlgValues],
   introspectionEndpointAuthSigningAlgValues: [...signingAlgValues],
   revocationEndpointAuthSigningAlgValues: [...signingAlgValues],
@@ -46,5 +46,12 @@ module.exports = {
   introspectionEncryptionEncValues: [...encryptionEncValues],
   authorizationEncryptionEncValues: [...encryptionEncValues],
 
-  dPoPSigningAlgValues: [...signingAlgValues].filter((alg) => !alg.startsWith('HS')),
+  dPoPSigningAlgValues: [...signingAlgValues].filter((alg) => {
+    if (alg) {
+      return !alg.startsWith('HS');
+    }
+    else {
+      throw new Error("alg was undefined or null"); // Added this else block because alg could be falsy
+    }
+  }),
 };
