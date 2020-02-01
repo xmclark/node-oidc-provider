@@ -4,7 +4,7 @@ import Koa from 'koa';
 import { strict as assert } from 'assert';
 import { IncomingMessage, ServerResponse } from 'http';
 import { Http2ServerRequest, Http2ServerResponse } from 'http2';
-import attention from './helpers/attention';
+import * as attention from './helpers/attention';
 import Configuration from './helpers/configuration';
 import { ROUTER_URL_METHOD } from './helpers/symbols';
 import instance from './helpers/weak_cache';
