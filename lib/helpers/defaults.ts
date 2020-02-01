@@ -7,9 +7,9 @@ import MemoryAdapter from '../adapters/memory_adapter';
 import { DEV_KEYSTORE } from '../consts';
 
 import { runtimeSupport } from './runtime_support';
-import base64url from './base64url';
+import * as base64url from './base64url';
 import * as attention from './attention';
-import nanoid from './nanoid';
+import { nanoid } from './nanoid';
 import { base: defaultPolicy } from './interaction_policy';
 import htmlSafe from './html_safe';
 
