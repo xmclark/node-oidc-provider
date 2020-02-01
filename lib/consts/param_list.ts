@@ -1,4 +1,4 @@
-module.exports = [
+export const PARAM_LIST = [
   'acr_values', // TODO:
   // 'claims', // added conditionally depending on feature flag
   'claims_locales', // TODO: store claimsLocales on AccessToken instances
