@@ -1,4 +1,4 @@
-const RECOGNIZED_METADATA = [
+export const RECOGNIZED_METADATA = [
   'application_type',
   'client_id_issued_at',
   'client_id',
@@ -27,7 +27,7 @@ const RECOGNIZED_METADATA = [
   'tos_uri',
 ];
 
-const DEFAULT = {
+export const DEFAULT = {
   application_type: 'web',
   grant_types: ['authorization_code'],
   id_token_signed_response_alg: 'RS256',
@@ -42,20 +42,20 @@ const DEFAULT = {
   frontchannel_logout_session_required: false,
 };
 
-const REQUIRED = [
+export const REQUIRED = [
   'client_id',
   // 'client_secret', => validated elsewhere and only needed somewhen
   'redirect_uris',
 ];
 
-const BOOL = [
+export const BOOL = [
   'backchannel_logout_session_required',
   'frontchannel_logout_session_required',
   'require_auth_time',
   'tls_client_certificate_bound_access_tokens',
 ];
 
-const ARYS = [
+export const ARYS = [
   'contacts',
   'default_acr_values',
   'grant_types',
@@ -66,7 +66,7 @@ const ARYS = [
   'web_message_uris',
 ];
 
-const STRING = [
+export const STRING = [
   'application_type',
   'backchannel_logout_uri',
   'client_id',
@@ -119,7 +119,7 @@ const STRING = [
   'web_message_uris',
 ];
 
-const WHEN = {
+export const WHEN = {
   id_token_encrypted_response_enc: ['id_token_encrypted_response_alg', 'A128CBC-HS256'],
   request_object_encryption_enc: ['request_object_encryption_alg', 'A128CBC-HS256'],
   userinfo_encrypted_response_enc: ['userinfo_encrypted_response_alg', 'A128CBC-HS256'],
@@ -127,7 +127,7 @@ const WHEN = {
   authorization_encrypted_response_enc: ['authorization_encrypted_response_alg', 'A128CBC-HS256'],
 };
 
-const WEB_URI = [
+export const WEB_URI = [
   'backchannel_logout_uri',
   'client_uri',
   'frontchannel_logout_uri',
@@ -142,27 +142,13 @@ const WEB_URI = [
   'request_uris',
 ];
 
-const HTTPS_URI = [
+export const HTTPS_URI = [
   'initiate_login_uri',
   'sector_identifier_uri',
 ];
 
-const LOOPBACKS = new Set(['localhost', '127.0.0.1', '[::1]']);
+export const LOOPBACKS = new Set(['localhost', '127.0.0.1', '[::1]']);
 
-const ENUM = {
+export const ENUM = {
   application_type: () => ['native', 'web'],
-};
-
-module.exports = {
-  ARYS,
-  BOOL,
-  DEFAULT,
-  ENUM,
-  HTTPS_URI,
-  LOOPBACKS,
-  RECOGNIZED_METADATA,
-  REQUIRED,
-  STRING,
-  WEB_URI,
-  WHEN,
 };
