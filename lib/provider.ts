@@ -89,7 +89,7 @@ async function getInteraction(req, res) {
   return interaction;
 }
 
-class Provider extends NodeJS.EventEmitter {
+export class Provider extends NodeJS.EventEmitter {
   constructor(issuer, setup) {
     assert(issuer, 'first argument must be the Issuer Identifier, i.e. https://op.example.com');
     assert.equal(typeof issuer, 'string', 'Issuer Identifier must be a string');
@@ -376,4 +376,4 @@ class Provider extends NodeJS.EventEmitter {
   });
 });
 
-module.exports = Provider;
+// module.exports = Provider;

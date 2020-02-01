@@ -1,4 +1,4 @@
-export Provider from './provider';
+export { Provider } from './provider';
 export errors from './helpers/errors';
 export { DYNAMIC_SCOPE_LABEL } from './consts';
 export interaction_policy from './helpers/interaction_policy';
