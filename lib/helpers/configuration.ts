@@ -11,7 +11,7 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import { JWA } from '../consts';
 import { formatters } from './formatters';
-import docs from './docs';
+import { docs } from './docs';
 import defaults from './defaults';
 import { STABLE, DRAFTS } from './features';
 import * as attention from './attention';
