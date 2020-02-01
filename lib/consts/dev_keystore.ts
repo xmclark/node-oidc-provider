@@ -1,4 +1,4 @@
-module.exports = {
+export const DEV_KEYSTORE = {
   keys: [
     {
       alg: 'RS256',
