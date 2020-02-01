@@ -1,17 +1,17 @@
 /* eslint-disable max-len */
 
-const crypto = require('crypto');
-const os = require('os');
+import crypto from 'crypto';
+import os from 'os';
 
-const MemoryAdapter = require('../adapters/memory_adapter');
-const { DEV_KEYSTORE } = require('../consts');
+import MemoryAdapter from '../adapters/memory_adapter';
+import { DEV_KEYSTORE } from '../consts';
 
-const runtimeSupport = require('./runtime_support');
-const base64url = require('./base64url');
-const attention = require('./attention');
-const nanoid = require('./nanoid');
-const { base: defaultPolicy } = require('./interaction_policy');
-const htmlSafe = require('./html_safe');
+import { runtimeSupport } from './runtime_support';
+import base64url from './base64url';
+import * as attention from './attention';
+import nanoid from './nanoid';
+import { base: defaultPolicy } from './interaction_policy';
+import htmlSafe from './html_safe';
 
 const warned = new Set();
 function shouldChange(name, msg) {
