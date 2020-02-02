@@ -42,3 +42,4 @@ TODO*.md
 # Test DB files
 dump.rdb
 db.sqlite
+.idea/
