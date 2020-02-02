@@ -1,8 +1,6 @@
 const map = new WeakMap();
 
-function instance(ctx) {
+export function instance(ctx: OIDCContext) {
   if (!map.has(ctx)) map.set(ctx, {});
   return map.get(ctx);
 }
-
-module.exports = instance;
