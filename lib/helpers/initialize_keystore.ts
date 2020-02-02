@@ -1,13 +1,13 @@
-const { strict: assert } = require('assert');
+import { strict as assert } from 'assert';
 
-const { JWKS } = require('jose');
-const isEqual = require('lodash/isEqual');
+import { JWKS } from 'jose';
+import isEqual from 'lodash/isEqual';
 
-const { DEV_KEYSTORE } = require('../consts');
+import { DEV_KEYSTORE } from '../consts';
 
-const runtimeSupport = require('./runtime_support');
-const attention = require('./attention');
-const instance = require('./weak_cache');
+import { runtimeSupport } from './runtime_support';
+import * as attention from './attention';
+import { instance } from './weak_cache';
 
 const KEY_TYPES = new Set(['RSA', 'EC', 'OKP']);
 
@@ -47,7 +47,7 @@ function registerKey(key) {
   });
 }
 
-module.exports = function initializeKeystore(jwks) {
+export function initializeKeystore(jwks) {
   if (isEqual(jwks, DEV_KEYSTORE)) {
     /* eslint-disable no-multi-str */
     attention.warn('a quick start development-only signing keys are used, you are expected to \
