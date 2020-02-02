@@ -1,4 +1,4 @@
-const STABLE = new Set([
+export const STABLE = new Set([
   'claimsParameter',
   'clientCredentials',
   'deviceFlow',
@@ -13,7 +13,7 @@ const STABLE = new Set([
   'userinfo',
 ]);
 
-const DRAFTS = new Map(Object.entries({
+export const DRAFTS = new Map(Object.entries({
   backchannelLogout: {
     name: 'OpenID Connect Back-Channel Logout 1.0 - draft 04',
     type: 'OIDF AB/Connect Working Group draft',
@@ -93,8 +93,3 @@ const DRAFTS = new Map(Object.entries({
     version: [0, 'id-00', 'individual-draft-00'],
   },
 }));
-
-module.exports = {
-  DRAFTS,
-  STABLE,
-};
