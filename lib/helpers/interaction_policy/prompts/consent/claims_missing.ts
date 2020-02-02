@@ -1,6 +1,6 @@
-const Check = require('../../check');
+import { Check } from '../../check';
 
-module.exports = () => new Check('claims_missing', 'requested claims not granted by End-User', (ctx) => {
+export const claims_missing = () => new Check('claims_missing', 'requested claims not granted by End-User', (ctx) => {
   const { oidc } = ctx;
   const promptedClaims = oidc.session.promptedClaimsFor(oidc.client.clientId);
 
